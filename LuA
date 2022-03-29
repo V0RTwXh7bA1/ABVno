@@ -1,0 +1,63 @@
+--[[
+You shouldn't be reading this.
+]]--
+
+local RS = game:GetService('RunService')
+
+local plr = game:GetService('Players').LocalPlayer
+local chr = plr.Character
+
+local root = chr.HumanoidRootPart
+local human = chr.Humanoid
+
+wait()
+
+--Library
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+--Creating
+local Main = Library.CreateLib("Project Pain: ABV", "Ocean")
+--Tabs
+local Config = Main:NewTab("Config")
+local General = Main:NewTab("General")
+local Buying = Main:NewTab("Buy")
+--Sections
+local CreditsConfig = Config:NewSection("Credits")
+local ExtraConfig = Config:NewSection("Extra")
+
+local BuyingSection = Buying:NewSection("Purchasables")
+--Config
+CreditsConfig:NewLabel("CATGOD#9935 - Owner")
+CreditsConfig:NewLabel("Donald?? - Helping")
+--Extra ( Config )
+ExtraConfig:NewKeybind("Menu Toggle", "KeybindInfo", Enum.KeyCode.Minus, function()
+	Library:ToggleUI()
+end)
+--Purchasables
+BuyingSection:NewButton("Buy Arrow $1250", "Purchases a arrow.", function()
+    print("Bought Arrow")
+    game.ReplicatedStorage.BuyArrow:FireServer()
+end)
+BuyingSection:NewButton("Buy Roka $1500", "Purchases a roka.", function()
+    print("Bought Roka")
+    game.ReplicatedStorage.BuyRoka:FireServer()
+end)
+BuyingSection:NewButton("Buy Sakuya Watch $100,000", "Purchases a watch from sakuya.", function()
+    print("Bought Watch")
+    game.ReplicatedStorage.BuyWatch:FireServer()
+end)
+BuyingSection:NewButton("Buy Vampire $60,000", "Purchases a Vampire mask.", function()
+    print("Bought Mask")
+    game.ReplicatedStorage.BuyVampire:FireServer()
+end)
+BuyingSection:NewButton("Buy Hamon $50,000", "Purchases Hamon spec.", function()
+    print("Bought Hamon")
+    game.ReplicatedStorage.BuyHamon:FireServer()
+end)
+BuyingSection:NewButton("Buy Shiny sword. $????", "Purchases a shiny sword.", function()
+    print("Bought Shiny sword")
+    game.ReplicatedStorage.BuyShinySword:FireServer()
+end)
+BuyingSection:NewButton("Buy Sword $????", "Purchases a sword.", function()
+    print("Bought Sword")
+    game.ReplicatedStorage.BuySword:FireServer()
+end)
