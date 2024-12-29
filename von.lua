@@ -8,9 +8,13 @@ local hb = RS.Heartbeat
 local toggle = false
 local character, humanoid
 
+local TeleportCheck = false
 Plr.OnTeleport:Connect(function(State)
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/V0RTwXh7bA1/ABVno/refs/heads/main/von.lua"))()
-  end)
+	if (not TeleportCheck) and queueteleport then
+		TeleportCheck = true
+		queueteleport("loadstring(game:HttpGet('"https://raw.githubusercontent.com/V0RTwXh7bA1/ABVno/refs/heads/main/von.lua'))()")
+	end
+end)
 
 UIS.InputBegan:Connect(function(Input, GPE)
     if GPE then return end
