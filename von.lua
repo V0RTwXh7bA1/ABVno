@@ -9,7 +9,7 @@ local toggle = false
 local character, humanoid
 
 Plr.OnTeleport:Connect(function(State)
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/infyiff/backup/main/wallwalker.lua"))()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/V0RTwXh7bA1/ABVno/refs/heads/main/von.lua"))()
   end)
 
 UIS.InputBegan:Connect(function(Input, GPE)
